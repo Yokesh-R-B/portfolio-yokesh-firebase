@@ -1,16 +1,23 @@
 import { useEffect, useMemo, useState } from "react";
-import Particles, { initParticlesEngine } from "@tsparticles/react";
+import Particles from "@tsparticles/react";
+import { tsParticles, type Engine } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim";
 import { useTheme } from "@/components/ThemeProvider";
+
+let initPromise: Promise<void> | null = null;
+function initEngineOnce(): Promise<void> {
+  if (!initPromise) {
+    initPromise = loadSlim(tsParticles as unknown as Engine).then(() => undefined);
+  }
+  return initPromise;
+}
 
 export function ParticleField() {
   const [ready, setReady] = useState(false);
   const { theme } = useTheme();
 
   useEffect(() => {
-    initParticlesEngine(async (engine) => {
-      await loadSlim(engine);
-    }).then(() => setReady(true));
+    initEngineOnce().then(() => setReady(true));
   }, []);
 
   const options = useMemo(
@@ -20,12 +27,8 @@ export function ParticleField() {
       fpsLimit: 60,
       detectRetina: true,
       interactivity: {
-        events: {
-          onHover: { enable: true, mode: "grab" },
-        },
-        modes: {
-          grab: { distance: 160, links: { opacity: 0.4 } },
-        },
+        events: { onHover: { enable: true, mode: "grab" } },
+        modes: { grab: { distance: 160, links: { opacity: 0.4 } } },
       },
       particles: {
         color: { value: theme === "dark" ? "#a78bfa" : "#7c5cff" },
