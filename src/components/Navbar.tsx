@@ -31,9 +31,9 @@ export function Navbar() {
       >
         <a href="#home" className="flex items-center gap-2 font-display font-semibold">
           <span className="grid h-8 w-8 place-items-center rounded-lg bg-gradient-brand text-white shadow-sm">
-            <span className="text-sm font-bold">A</span>
+            <span className="text-sm font-bold">Y</span>
           </span>
-          <span className="hidden sm:inline">alex<span className="text-gradient">.dev</span></span>
+          <span className="hidden sm:inline">yokesh<span className="text-gradient">.dev</span></span>
         </a>
 
         <nav className="hidden md:flex items-center gap-1 text-sm">

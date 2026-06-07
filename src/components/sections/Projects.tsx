@@ -1,6 +1,6 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { Github, ExternalLink, Search, X } from "lucide-react";
+import { Github, ExternalLink, X } from "lucide-react";
 import { Section, fadeUp, stagger } from "@/components/Section";
 import { portfolioData, type Project } from "@/data/portfolioData";
 
@@ -34,9 +34,6 @@ function TiltCard({ project, onOpen }: { project: Project; onOpen: () => void })
           className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent opacity-90" />
-        <span className="absolute left-3 top-3 rounded-full border border-border bg-background/60 px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-muted-foreground backdrop-blur">
-          {project.category}
-        </span>
       </div>
       <div className="p-5">
         <h3 className="font-display text-lg font-semibold">{project.title}</h3>
@@ -58,23 +55,7 @@ function TiltCard({ project, onOpen }: { project: Project; onOpen: () => void })
 
 export function Projects() {
   const { projects } = portfolioData;
-  const categories = ["All", ...Array.from(new Set(projects.map((p) => p.category)))];
-  const [cat, setCat] = useState("All");
-  const [query, setQuery] = useState("");
   const [active, setActive] = useState<Project | null>(null);
-
-  const filtered = useMemo(() => {
-    return projects.filter((p) => {
-      const matchCat = cat === "All" || p.category === cat;
-      const q = query.trim().toLowerCase();
-      const matchQ =
-        !q ||
-        p.title.toLowerCase().includes(q) ||
-        p.description.toLowerCase().includes(q) ||
-        p.tech.some((t) => t.toLowerCase().includes(q));
-      return matchCat && matchQ;
-    });
-  }, [projects, cat, query]);
 
   return (
     <Section
@@ -83,33 +64,6 @@ export function Projects() {
       title={<>Projects I'm <span className="text-gradient">proud of</span>.</>}
       subtitle="A mix of backend systems, full-stack apps, and crafted UI experiences."
     >
-      <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex flex-wrap gap-2">
-          {categories.map((c) => (
-            <button
-              key={c}
-              onClick={() => setCat(c)}
-              className={`rounded-full px-3.5 py-1.5 text-sm border transition-colors ${
-                cat === c
-                  ? "border-transparent bg-foreground text-background"
-                  : "border-border bg-card/50 text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {c}
-            </button>
-          ))}
-        </div>
-        <div className="relative">
-          <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-          <input
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search projects..."
-            className="w-full sm:w-64 rounded-full border border-border bg-card/60 pl-9 pr-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[var(--ring)] backdrop-blur"
-          />
-        </div>
-      </div>
-
       <motion.div
         variants={stagger}
         initial="hidden"
@@ -118,14 +72,14 @@ export function Projects() {
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
       >
         <AnimatePresence mode="popLayout">
-          {filtered.map((p) => (
+          {projects.map((p) => (
             <TiltCard key={p.id} project={p} onOpen={() => setActive(p)} />
           ))}
         </AnimatePresence>
       </motion.div>
 
-      {filtered.length === 0 && (
-        <p className="mt-10 text-center text-sm text-muted-foreground">No projects match your search.</p>
+      {projects.length === 0 && (
+        <p className="mt-10 text-center text-sm text-muted-foreground">No projects available.</p>
       )}
 
       <AnimatePresence>
@@ -154,10 +108,7 @@ export function Projects() {
               </button>
               <img src={active.image} alt={active.title} className="h-64 w-full object-cover" />
               <div className="p-6 sm:p-8">
-                <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground">
-                  {active.category}
-                </span>
-                <h3 className="mt-2 text-2xl font-semibold">{active.title}</h3>
+                <h3 className="text-2xl font-semibold">{active.title}</h3>
                 <p className="mt-3 text-muted-foreground">{active.description}</p>
 
                 <h4 className="mt-6 text-sm font-semibold">Key features</h4>
@@ -180,14 +131,14 @@ export function Projects() {
                 </div>
 
                 <div className="mt-7 flex flex-wrap gap-3">
-                  <a
+                  {/* <a
                     href={active.demo}
                     target="_blank"
                     rel="noreferrer"
                     className="inline-flex items-center gap-2 rounded-xl bg-gradient-brand px-4 py-2 text-sm font-medium text-white glow-brand"
                   >
                     <ExternalLink className="h-4 w-4" /> Live demo
-                  </a>
+                  </a> */}
                   <a
                     href={active.github}
                     target="_blank"

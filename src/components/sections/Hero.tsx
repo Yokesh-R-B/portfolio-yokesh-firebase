@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Download, Mail } from "lucide-react";
 import { ParticleField } from "@/components/ParticleField";
-import { HeroScene } from "@/components/HeroScene";
 import { portfolioData } from "@/data/portfolioData";
+import portrait from "@/assets/portrait.jpg";
 
 function useTypewriter(words: string[], speed = 70, pause = 1400) {
   const [text, setText] = useState("");
@@ -52,7 +52,7 @@ export function Hero() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-60" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
             </span>
-            Available for opportunities · {personal.location}
+            Available for opportunities
           </motion.div>
 
           <motion.h1
@@ -63,7 +63,7 @@ export function Hero() {
           >
             Hi, I'm <span className="text-gradient">{personal.firstName}.</span>
             <br />
-            I build things for the web.
+            Building the unseen.
           </motion.h1>
 
           <motion.p
@@ -79,7 +79,7 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.25 }}
-            className="mt-6 flex items-center gap-2 font-mono text-sm text-muted-foreground"
+            className="mt-6 flex items-center gap-2 font-mono text-m text-muted-foreground"
           >
             <span className="text-[var(--brand)]">$</span>
             <span>{role}</span>
@@ -129,7 +129,31 @@ export function Hero() {
           className="lg:col-span-5 relative h-[360px] sm:h-[440px]"
         >
           <div className="absolute inset-0 rounded-3xl border border-border bg-card/30 backdrop-blur-sm overflow-hidden">
-            <HeroScene />
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
+              className="absolute inset-0"
+            >
+              <div className="absolute inset-7 rounded-[2.5rem] border border-[color:var(--brand)]/15" />
+              <div className="absolute inset-14 rounded-[2.2rem] border border-[color:var(--neon)]/20" />
+              <div className="absolute inset-20 rounded-[1.9rem] border border-[color:var(--neon-2)]/25" />
+            </motion.div>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="relative w-full max-w-[350px] aspect-square overflow-hidden rounded-[2rem] border border-border bg-background/90 shadow-[0_32px_90px_oklch(0_0_0_/_0.24)]">
+                <img
+                  src={portrait}
+                  alt="Portrait of the developer"
+                  // width={1024}
+                  // height={1024}
+                  className="h-full w-full object-cover"
+                />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,transparent_0%,transparent_42%,oklch(0_0_0_/_0.26)_100%),linear-gradient(to_top,var(--background),transparent_46%)]" />
+                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between rounded-full glass px-4 py-2 font-mono text-[10px] uppercase tracking-widest">
+                  <span className="text-[color:var(--neon)]">● online</span>
+                  <span className="text-muted-foreground">dev / java · python</span>
+                </div>
+              </div>
+            </div>
           </div>
           <div className="absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-brand opacity-20 blur-3xl" />
         </motion.div>

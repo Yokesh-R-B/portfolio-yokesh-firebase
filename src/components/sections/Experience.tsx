@@ -6,6 +6,7 @@ import { GraduationCap, Briefcase, Award, BookOpen, Trophy } from "lucide-react"
 const iconMap = {
   education: GraduationCap,
   internship: Briefcase,
+  work: Briefcase,
   certification: Award,
   workshop: BookOpen,
   achievement: Trophy,
@@ -17,7 +18,7 @@ export function Experience() {
     <Section
       id="experience"
       eyebrow="Journey"
-      title={<>Experience & <span className="text-gradient">milestones</span></>}
+      title={<>Experience & <span className="text-gradient">Career Journey</span></>}
       subtitle="A timeline of learning, building, and the moments that shaped my path."
     >
       <div className="relative">
@@ -42,7 +43,9 @@ export function Experience() {
                     </div>
                     <h3 className="mt-1 font-display text-lg font-semibold">{t.title}</h3>
                     <div className="text-sm text-muted-foreground">{t.org}</div>
-                    <p className="mt-2 text-sm text-muted-foreground">{t.detail}</p>
+                    <p className="mt-2 text-sm text-muted-foreground text-justify leading-relaxed">
+  {t.detail}
+</p>
                   </div>
                 </div>
                 <div className="hidden sm:block" />

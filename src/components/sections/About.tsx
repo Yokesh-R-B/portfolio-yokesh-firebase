@@ -4,10 +4,10 @@ import { portfolioData } from "@/data/portfolioData";
 import { Code2, Layers, Rocket, Sparkles } from "lucide-react";
 
 const highlights = [
-  { icon: Code2, title: "Backend-first", text: "I love designing reliable APIs and clean service boundaries." },
-  { icon: Layers, title: "Scalable systems", text: "Distributed patterns, queues, and observability done right." },
-  { icon: Rocket, title: "Ship, then iterate", text: "Pragmatic delivery without compromising on quality." },
-  { icon: Sparkles, title: "Always learning", text: "New languages, tools, and patterns — every single week." },
+  { icon: Code2, title: "5+ Projects shipped", text: "Delivered backend services, APIs, and automation systems used in production." },
+  { icon: Layers, title: "3 Core stacks", text: "Java, Spring Boot, and Python power my backend-first engineering." },
+  { icon: Rocket, title: "2+ Years experience", text: "Built systems for automotive, finance, and research teams." },
+  { icon: Sparkles, title: "∞ Curiosity", text: "Continuously learning AI workflows, tooling, and better practices." },
 ];
 
 export function About() {
@@ -16,7 +16,7 @@ export function About() {
     <Section
       id="about"
       eyebrow="About"
-      title={<>A developer who cares about <span className="text-gradient">craft</span>.</>}
+      title={<>A junior dev with <span className="text-gradient">senior curiosity</span>.</>}
       subtitle={personal.bio}
     >
       <motion.div
