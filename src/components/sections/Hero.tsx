@@ -1,9 +1,13 @@
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Download, Mail } from "lucide-react";
-import { ParticleField } from "@/components/ParticleField";
-import { portfolioData } from "@/data/portfolioData";
-import portrait from "@/assets/portrait.jpg";
+import { useTranslation } from "react-i18next";
+import { usePortfolioData } from "@/hooks/use-portfolio-data";
+import portrait from "@/assets/portrait-optimized.jpg";
+
+const ParticleField = lazy(() =>
+  import("@/components/ParticleField").then((m) => ({ default: m.ParticleField })),
+);
 
 function useTypewriter(words: string[], speed = 70, pause = 1400) {
   const [text, setText] = useState("");
@@ -30,14 +34,33 @@ function useTypewriter(words: string[], speed = 70, pause = 1400) {
 }
 
 export function Hero() {
-  const { personal } = portfolioData;
+  const { t } = useTranslation();
+  const { personal } = usePortfolioData();
   const role = useTypewriter(personal.roles);
   const reduce = useReducedMotion();
+  const [showParticles, setShowParticles] = useState(false);
+
+  useEffect(() => {
+    const isDesktop = window.matchMedia("(min-width: 768px)").matches;
+    const savesData =
+      "connection" in navigator &&
+      Boolean(
+        (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData,
+      );
+    setShowParticles(isDesktop && !savesData && !reduce);
+  }, [reduce]);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center pt-28 pb-16 overflow-hidden">
+    <section
+      id="home"
+      className="relative min-h-screen flex items-center pt-28 pb-16 overflow-hidden"
+    >
       <div className="absolute inset-0 -z-10">
-        <ParticleField />
+        {showParticles && (
+          <Suspense fallback={null}>
+            <ParticleField />
+          </Suspense>
+        )}
       </div>
 
       <div className="mx-auto grid w-full max-w-6xl grid-cols-1 lg:grid-cols-12 gap-10 px-6 items-center">
@@ -52,7 +75,7 @@ export function Hero() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-60" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
             </span>
-            Available for opportunities
+            {t("hero.availability")}
           </motion.div>
 
           <motion.h1
@@ -61,9 +84,9 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.05 }}
             className="mt-6 text-5xl sm:text-7xl font-semibold tracking-tight leading-[1.05]"
           >
-            Hi, I'm <span className="text-gradient">{personal.firstName}.</span>
+            {t("hero.headlinePrefix")} <span className="text-gradient">{personal.firstName}.</span>
             <br />
-            Building the unseen.
+            {t("hero.headlineSecond")}
           </motion.h1>
 
           <motion.p
@@ -101,7 +124,7 @@ export function Hero() {
               href="#projects"
               className="group inline-flex items-center gap-2 rounded-xl bg-gradient-brand px-5 py-3 text-sm font-medium text-white glow-brand transition-transform hover:scale-[1.02] active:scale-[0.98]"
             >
-              View Projects
+              {t("hero.viewProjects")}
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </a>
             <a
@@ -109,7 +132,7 @@ export function Hero() {
               className="inline-flex items-center gap-2 rounded-xl border border-border bg-card/60 px-5 py-3 text-sm font-medium backdrop-blur hover:bg-accent transition-colors"
             >
               <Mail className="h-4 w-4" />
-              Contact Me
+              {t("hero.contactMe")}
             </a>
             <a
               href={personal.resumeUrl}
@@ -117,7 +140,7 @@ export function Hero() {
               className="inline-flex items-center gap-2 rounded-xl border border-border bg-card/60 px-5 py-3 text-sm font-medium backdrop-blur hover:bg-accent transition-colors"
             >
               <Download className="h-4 w-4" />
-              Resume
+              {t("hero.resume")}
             </a>
           </motion.div>
         </div>
@@ -142,14 +165,15 @@ export function Hero() {
               <div className="relative w-full max-w-[350px] aspect-square overflow-hidden rounded-[2rem] border border-border bg-background/90 shadow-[0_32px_90px_oklch(0_0_0_/_0.24)]">
                 <img
                   src={portrait}
-                  alt="Portrait of the developer"
-                  // width={1024}
-                  // height={1024}
+                  alt={t("hero.portraitAlt")}
+                  width={900}
+                  height={900}
+                  fetchPriority="high"
                   className="h-full w-full object-cover"
                 />
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,transparent_0%,transparent_42%,oklch(0_0_0_/_0.26)_100%),linear-gradient(to_top,var(--background),transparent_46%)]" />
                 <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between rounded-full glass px-4 py-2 font-mono text-[10px] uppercase tracking-widest">
-                  <span className="text-[color:var(--neon)]">● online</span>
+                  <span className="text-[color:var(--neon)]">● {t("hero.online")}</span>
                   <span className="text-muted-foreground">dev / java · python</span>
                 </div>
               </div>

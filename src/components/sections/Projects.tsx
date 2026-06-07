@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { Github, ExternalLink, X } from "lucide-react";
+import { Github, X } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Section, fadeUp, stagger } from "@/components/Section";
-import { portfolioData, type Project } from "@/data/portfolioData";
+import type { Project } from "@/data/portfolioData";
+import { usePortfolioData } from "@/hooks/use-portfolio-data";
 
 function TiltCard({ project, onOpen }: { project: Project; onOpen: () => void }) {
   const mx = useMotionValue(0);
@@ -54,15 +56,22 @@ function TiltCard({ project, onOpen }: { project: Project; onOpen: () => void })
 }
 
 export function Projects() {
-  const { projects } = portfolioData;
+  const { t } = useTranslation();
+  const { projects } = usePortfolioData();
   const [active, setActive] = useState<Project | null>(null);
 
   return (
     <Section
       id="projects"
-      eyebrow="Selected work"
-      title={<>Projects I'm <span className="text-gradient">proud of</span>.</>}
-      subtitle="A mix of backend systems, full-stack apps, and crafted UI experiences."
+      eyebrow={t("sections.projects.eyebrow")}
+      title={
+        <>
+          {t("sections.projects.titlePrefix")}{" "}
+          <span className="text-gradient">{t("sections.projects.titleHighlight")}</span>
+          {t("sections.projects.titleSuffix")}
+        </>
+      }
+      subtitle={t("sections.projects.subtitle")}
     >
       <motion.div
         variants={stagger}
@@ -79,7 +88,9 @@ export function Projects() {
       </motion.div>
 
       {projects.length === 0 && (
-        <p className="mt-10 text-center text-sm text-muted-foreground">No projects available.</p>
+        <p className="mt-10 text-center text-sm text-muted-foreground">
+          {t("sections.projects.empty")}
+        </p>
       )}
 
       <AnimatePresence>
@@ -102,7 +113,7 @@ export function Projects() {
               <button
                 onClick={() => setActive(null)}
                 className="absolute right-3 top-3 z-10 grid h-9 w-9 place-items-center rounded-full border border-border bg-background/70 backdrop-blur hover:bg-accent"
-                aria-label="Close"
+                aria-label={t("sections.projects.close")}
               >
                 <X className="h-4 w-4" />
               </button>
@@ -111,7 +122,7 @@ export function Projects() {
                 <h3 className="text-2xl font-semibold">{active.title}</h3>
                 <p className="mt-3 text-muted-foreground">{active.description}</p>
 
-                <h4 className="mt-6 text-sm font-semibold">Key features</h4>
+                <h4 className="mt-6 text-sm font-semibold">{t("sections.projects.keyFeatures")}</h4>
                 <ul className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-muted-foreground">
                   {active.features.map((f) => (
                     <li key={f} className="flex items-start gap-2">
@@ -121,7 +132,7 @@ export function Projects() {
                   ))}
                 </ul>
 
-                <h4 className="mt-6 text-sm font-semibold">Tech stack</h4>
+                <h4 className="mt-6 text-sm font-semibold">{t("sections.projects.techStack")}</h4>
                 <div className="mt-2 flex flex-wrap gap-1.5">
                   {active.tech.map((t) => (
                     <span key={t} className="rounded-md bg-secondary px-2 py-0.5 text-xs">
@@ -145,7 +156,7 @@ export function Projects() {
                     rel="noreferrer"
                     className="inline-flex items-center gap-2 rounded-xl border border-border bg-card/60 px-4 py-2 text-sm font-medium hover:bg-accent"
                   >
-                    <Github className="h-4 w-4" /> Source
+                    <Github className="h-4 w-4" /> {t("sections.projects.source")}
                   </a>
                 </div>
               </div>

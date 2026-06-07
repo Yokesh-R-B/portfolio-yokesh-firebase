@@ -1,0 +1,123 @@
+{
+  "nav": {
+    "home": "Start",
+    "about": "Über mich",
+    "skills": "Skills",
+    "projects": "Projekte",
+    "experience": "Erfahrung",
+    "profiles": "Profile",
+    "resume": "Lebenslauf",
+    "contact": "Kontakt",
+    "theme": "Design wechseln",
+    "language": "Sprache wechseln"
+  },
+  "hero": {
+    "availability": "Offen für neue Möglichkeiten",
+    "headlinePrefix": "Hi, ich bin",
+    "headlineSecond": "Ich baue das Unsichtbare.",
+    "viewProjects": "Projekte ansehen",
+    "contactMe": "Kontakt aufnehmen",
+    "resume": "Lebenslauf",
+    "portraitAlt": "Porträt des Entwicklers",
+    "online": "online"
+  },
+  "sections": {
+    "about": {
+      "eyebrow": "Über mich",
+      "titlePrefix": "Ein Junior Developer mit",
+      "titleHighlight": "Senior-Neugier",
+      "titleSuffix": ".",
+      "highlights": [
+        {
+          "title": "5+ Projekte umgesetzt",
+          "text": "Backend-Services, APIs und Automatisierungssysteme für den produktiven Einsatz geliefert."
+        },
+        {
+          "title": "3 Kern-Stacks",
+          "text": "Java, Spring Boot und Python prägen meine backendorientierte Entwicklung."
+        },
+        {
+          "title": "2+ Jahre Erfahrung",
+          "text": "Systeme für Automotive-, Finanz- und Forschungsteams entwickelt."
+        },
+        {
+          "title": "∞ Neugier",
+          "text": "Ständiges Lernen rund um KI-Workflows, Tooling und bessere Entwicklungspraktiken."
+        }
+      ]
+    },
+    "skills": {
+      "eyebrow": "Skills",
+      "title": "Tools, mit denen ich arbeite.",
+      "subtitle": "Ein kuratierter Stack, geordnet danach, wo er in meiner Arbeit eingesetzt wird.",
+      "fallbackDescription": "Praxiserfahrung durch eigene Projekte."
+    },
+    "projects": {
+      "eyebrow": "Ausgewählte Arbeit",
+      "titlePrefix": "Projekte, auf die ich",
+      "titleHighlight": "stolz bin",
+      "titleSuffix": ".",
+      "subtitle": "Eine Mischung aus Backend-Systemen, Full-Stack-Apps und sorgfältig gestalteten UI-Erlebnissen.",
+      "empty": "Keine Projekte verfügbar.",
+      "keyFeatures": "Kernfunktionen",
+      "techStack": "Tech-Stack",
+      "source": "Quellcode",
+      "close": "Schließen"
+    },
+    "experience": {
+      "eyebrow": "Werdegang",
+      "titlePrefix": "Erfahrung &",
+      "titleHighlight": "Karriereweg",
+      "subtitle": "Eine Zeitleiste des Lernens, Bauens und der Stationen, die meinen Weg geprägt haben."
+    },
+    "profiles": {
+      "eyebrow": "Coding-Profile",
+      "titlePrefix": "Wo ich",
+      "titleHighlight": "dranbleibe",
+      "titleSuffix": ".",
+      "subtitle": "Probleme lösen, beitragen und mich in Entwickler-Communities weiterentwickeln.",
+      "active": "Aktiv"
+    },
+    "resume": {
+      "eyebrow": "Lebenslauf",
+      "titlePrefix": "Eine Seite.",
+      "titleHighlight": "Alle Highlights.",
+      "heading": "{{name}} - Lebenslauf",
+      "meta": "Kürzlich aktualisiert · PDF · Eine Seite",
+      "preview": "Vorschau",
+      "download": "Download"
+    },
+    "contact": {
+      "eyebrow": "Kontakt",
+      "titlePrefix": "Lass uns",
+      "titleHighlight": "etwas bauen",
+      "titleSuffix": ".",
+      "subtitle": "Ich antworte normalerweise innerhalb eines Tages. Oder schreib mir direkt an {{email}}.",
+      "name": "Name",
+      "email": "E-Mail",
+      "message": "Nachricht",
+      "namePlaceholder": "Mit wem spreche ich?",
+      "emailPlaceholder": "Wo kann ich dich erreichen?",
+      "messagePlaceholder": "Ob Software-Rolle, technisches Projekt oder spannende Idee: Ich freue mich, davon zu hören.",
+      "send": "Nachricht senden",
+      "sending": "Wird gesendet",
+      "sent": "Gesendet",
+      "sendError": "Senden fehlgeschlagen. Schreib mir gern direkt per E-Mail.",
+      "validation": {
+        "nameRequired": "Name ist erforderlich",
+        "tooLong": "Zu lang",
+        "emailRequired": "E-Mail ist erforderlich",
+        "invalidEmail": "Ungültige E-Mail",
+        "messageRequired": "Nachricht ist erforderlich",
+        "messageShort": "Bitte etwas ausführlicher"
+      }
+    }
+  },
+  "footer": {
+    "crafted": "© {{year}} — Erstellt mit Motion, Partikeln & Koffein."
+  },
+  "notFound": {
+    "message": "Diese Seite existiert nicht.",
+    "home": "Zur Startseite"
+  }
+}

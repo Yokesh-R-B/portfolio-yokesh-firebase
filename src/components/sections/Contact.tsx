@@ -3,16 +3,23 @@ import { useForm } from "react-hook-form";
 import { motion, AnimatePresence } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import { Send, CheckCircle2, Loader2 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Section } from "@/components/Section";
-import { portfolioData } from "@/data/portfolioData";
+import { usePortfolioData } from "@/hooks/use-portfolio-data";
 import { toast } from "sonner";
 
 type FormData = { name: string; email: string; message: string };
 
 export function Contact() {
-  const { register, handleSubmit, reset, formState: { errors } } = useForm<FormData>();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<FormData>();
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
-  const { emailjs: cfg, personal } = portfolioData;
+  const { t } = useTranslation();
+  const { emailjs: cfg, personal } = usePortfolioData();
 
   const onSubmit = async (data: FormData) => {
     setStatus("sending");
@@ -23,7 +30,7 @@ export function Contact() {
         await emailjs.send(
           cfg.serviceId,
           cfg.templateId,
-          { from_name: data.name, from_email: data.email, message: data.message },
+          { name: data.name, email: data.email, message: data.message },
           { publicKey: cfg.publicKey },
         );
       }
@@ -32,7 +39,7 @@ export function Contact() {
       setTimeout(() => setStatus("idle"), 3500);
     } catch (e) {
       console.error(e);
-      toast.error("Couldn't send. Try emailing me directly.");
+      toast.error(t("sections.contact.sendError"));
       setStatus("idle");
     }
   };
@@ -40,9 +47,15 @@ export function Contact() {
   return (
     <Section
       id="contact"
-      eyebrow="Contact"
-      title={<>Let's <span className="text-gradient">build something</span>.</>}
-      subtitle={`I usually reply within a day. Or email me directly at ${personal.email}.`}
+      eyebrow={t("sections.contact.eyebrow")}
+      title={
+        <>
+          {t("sections.contact.titlePrefix")}{" "}
+          <span className="text-gradient">{t("sections.contact.titleHighlight")}</span>
+          {t("sections.contact.titleSuffix")}
+        </>
+      }
+      subtitle={t("sections.contact.subtitle", { email: personal.email })}
     >
       <motion.form
         onSubmit={handleSubmit(onSubmit)}
@@ -52,29 +65,38 @@ export function Contact() {
         transition={{ duration: 0.6 }}
         className="mx-auto max-w-2xl space-y-5 rounded-3xl border border-border bg-card/60 p-6 sm:p-8 backdrop-blur"
       >
-        <Field label="Name" error={errors.name?.message}>
+        <Field label={t("sections.contact.name")} error={errors.name?.message}>
           <input
-            {...register("name", { required: "Name is required", maxLength: { value: 80, message: "Too long" } })}
-            placeholder="Jane Doe"
+            {...register("name", {
+              required: t("sections.contact.validation.nameRequired"),
+              maxLength: { value: 80, message: t("sections.contact.validation.tooLong") },
+            })}
+            placeholder={t("sections.contact.namePlaceholder")}
             className="input"
           />
         </Field>
-        <Field label="Email" error={errors.email?.message}>
+        <Field label={t("sections.contact.email")} error={errors.email?.message}>
           <input
             type="email"
             {...register("email", {
-              required: "Email is required",
-              pattern: { value: /^[^@\s]+@[^@\s]+\.[^@\s]+$/, message: "Invalid email" },
+              required: t("sections.contact.validation.emailRequired"),
+              pattern: {
+                value: /^[^@\s]+@[^@\s]+\.[^@\s]+$/,
+                message: t("sections.contact.validation.invalidEmail"),
+              },
             })}
-            placeholder="you@company.com"
+            placeholder={t("sections.contact.emailPlaceholder")}
             className="input"
           />
         </Field>
-        <Field label="Message" error={errors.message?.message}>
+        <Field label={t("sections.contact.message")} error={errors.message?.message}>
           <textarea
             rows={5}
-            {...register("message", { required: "Message is required", minLength: { value: 10, message: "A bit more, please" } })}
-            placeholder="Tell me about your project, role, or idea..."
+            {...register("message", {
+              required: t("sections.contact.validation.messageRequired"),
+              minLength: { value: 10, message: t("sections.contact.validation.messageShort") },
+            })}
+            placeholder={t("sections.contact.messagePlaceholder")}
             className="input resize-none"
           />
         </Field>
@@ -87,18 +109,36 @@ export function Contact() {
           >
             <AnimatePresence mode="wait">
               {status === "idle" && (
-                <motion.span key="i" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="inline-flex items-center gap-2">
-                  Send message <Send className="h-4 w-4" />
+                <motion.span
+                  key="i"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="inline-flex items-center gap-2"
+                >
+                  {t("sections.contact.send")} <Send className="h-4 w-4" />
                 </motion.span>
               )}
               {status === "sending" && (
-                <motion.span key="s" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="inline-flex items-center gap-2">
-                  Sending <Loader2 className="h-4 w-4 animate-spin" />
+                <motion.span
+                  key="s"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="inline-flex items-center gap-2"
+                >
+                  {t("sections.contact.sending")} <Loader2 className="h-4 w-4 animate-spin" />
                 </motion.span>
               )}
               {status === "sent" && (
-                <motion.span key="d" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="inline-flex items-center gap-2">
-                  Sent <CheckCircle2 className="h-4 w-4" />
+                <motion.span
+                  key="d"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="inline-flex items-center gap-2"
+                >
+                  {t("sections.contact.sent")} <CheckCircle2 className="h-4 w-4" />
                 </motion.span>
               )}
             </AnimatePresence>
@@ -126,7 +166,15 @@ export function Contact() {
   );
 }
 
-function Field({ label, error, children }: { label: string; error?: string; children: React.ReactNode }) {
+function Field({
+  label,
+  error,
+  children,
+}: {
+  label: string;
+  error?: string;
+  children: React.ReactNode;
+}) {
   return (
     <label className="block">
       <div className="mb-1.5 flex items-center justify-between">

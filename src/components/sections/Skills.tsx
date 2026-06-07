@@ -1,15 +1,17 @@
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import { Section, fadeUp, stagger } from "@/components/Section";
-import { portfolioData } from "@/data/portfolioData";
+import { usePortfolioData } from "@/hooks/use-portfolio-data";
 
 export function Skills() {
-  const { skills, skillDescriptions } = portfolioData;
+  const { t } = useTranslation();
+  const { skills, skillDescriptions } = usePortfolioData();
   return (
     <Section
       id="skills"
-      eyebrow="Skills"
-      title={<>Tools I reach for.</>}
-      subtitle="A curated stack, organized by where it shows up in my work."
+      eyebrow={t("sections.skills.eyebrow")}
+      title={<>{t("sections.skills.title")}</>}
+      subtitle={t("sections.skills.subtitle")}
     >
       <div className="space-y-10">
         {Object.entries(skills).map(([group, items]) => (
@@ -20,7 +22,10 @@ export function Skills() {
             viewport={{ once: true, margin: "-60px" }}
             variants={stagger}
           >
-            <motion.h3 variants={fadeUp} className="mb-4 text-sm font-mono uppercase tracking-widest text-muted-foreground">
+            <motion.h3
+              variants={fadeUp}
+              className="mb-4 text-sm font-mono uppercase tracking-widest text-muted-foreground"
+            >
               {group}
             </motion.h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
@@ -39,7 +44,7 @@ export function Skills() {
                       <span className="h-2 w-2 rounded-full bg-[var(--brand)] shadow-[0_0_10px_var(--brand)]" />
                     </div>
                     <p className="mt-1.5 text-xs text-muted-foreground line-clamp-2">
-                      {skillDescriptions[s] ?? "Working knowledge with hands-on projects."}
+                      {skillDescriptions[s] ?? t("sections.skills.fallbackDescription")}
                     </p>
                   </div>
                 </motion.div>

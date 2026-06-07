@@ -1,0 +1,123 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "skills": "Skills",
+    "projects": "Projects",
+    "experience": "Experience",
+    "profiles": "Profiles",
+    "resume": "Resume",
+    "contact": "Contact",
+    "theme": "Toggle theme",
+    "language": "Switch language"
+  },
+  "hero": {
+    "availability": "Available for opportunities",
+    "headlinePrefix": "Hi, I'm",
+    "headlineSecond": "Building the unseen.",
+    "viewProjects": "View Projects",
+    "contactMe": "Contact Me",
+    "resume": "Resume",
+    "portraitAlt": "Portrait of the developer",
+    "online": "online"
+  },
+  "sections": {
+    "about": {
+      "eyebrow": "About",
+      "titlePrefix": "A junior dev with",
+      "titleHighlight": "senior curiosity",
+      "titleSuffix": ".",
+      "highlights": [
+        {
+          "title": "5+ Projects shipped",
+          "text": "Delivered backend services, APIs, and automation systems used in production."
+        },
+        {
+          "title": "3 Core stacks",
+          "text": "Java, Spring Boot, and Python power my backend-first engineering."
+        },
+        {
+          "title": "2+ Years experience",
+          "text": "Built systems for automotive, finance, and research teams."
+        },
+        {
+          "title": "∞ Curiosity",
+          "text": "Continuously learning AI workflows, tooling, and better practices."
+        }
+      ]
+    },
+    "skills": {
+      "eyebrow": "Skills",
+      "title": "Tools I reach for.",
+      "subtitle": "A curated stack, organized by where it shows up in my work.",
+      "fallbackDescription": "Working knowledge with hands-on projects."
+    },
+    "projects": {
+      "eyebrow": "Selected work",
+      "titlePrefix": "Projects I'm",
+      "titleHighlight": "proud of",
+      "titleSuffix": ".",
+      "subtitle": "A mix of backend systems, full-stack apps, and crafted UI experiences.",
+      "empty": "No projects available.",
+      "keyFeatures": "Key features",
+      "techStack": "Tech stack",
+      "source": "Source",
+      "close": "Close"
+    },
+    "experience": {
+      "eyebrow": "Journey",
+      "titlePrefix": "Experience &",
+      "titleHighlight": "Career Journey",
+      "subtitle": "A timeline of learning, building, and the moments that shaped my path."
+    },
+    "profiles": {
+      "eyebrow": "Coding profiles",
+      "titlePrefix": "Where I",
+      "titleHighlight": "grind",
+      "titleSuffix": ".",
+      "subtitle": "Solving problems, contributing, and leveling up across communities.",
+      "active": "Active"
+    },
+    "resume": {
+      "eyebrow": "Resume",
+      "titlePrefix": "One page.",
+      "titleHighlight": "All the highlights.",
+      "heading": "{{name}} - Resume",
+      "meta": "Updated recently · PDF · One page",
+      "preview": "Preview",
+      "download": "Download"
+    },
+    "contact": {
+      "eyebrow": "Contact",
+      "titlePrefix": "Let's",
+      "titleHighlight": "build something",
+      "titleSuffix": ".",
+      "subtitle": "I usually reply within a day. Or email me directly at {{email}}.",
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "namePlaceholder": "Who am I speaking with?",
+      "emailPlaceholder": "Where can I reach you?",
+      "messagePlaceholder": "Whether it's a software role, a technical project, or an interesting idea, I'd love to hear about it.",
+      "send": "Send message",
+      "sending": "Sending",
+      "sent": "Sent",
+      "sendError": "Couldn't send. Try emailing me directly.",
+      "validation": {
+        "nameRequired": "Name is required",
+        "tooLong": "Too long",
+        "emailRequired": "Email is required",
+        "invalidEmail": "Invalid email",
+        "messageRequired": "Message is required",
+        "messageShort": "A bit more, please"
+      }
+    }
+  },
+  "footer": {
+    "crafted": "© {{year}} — Crafted with motion, particles & caffeine."
+  },
+  "notFound": {
+    "message": "This page doesn't exist.",
+    "home": "Go home"
+  }
+}

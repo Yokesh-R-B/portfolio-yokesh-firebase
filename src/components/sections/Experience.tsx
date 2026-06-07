@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import { Section } from "@/components/Section";
-import { portfolioData } from "@/data/portfolioData";
+import { usePortfolioData } from "@/hooks/use-portfolio-data";
 import { GraduationCap, Briefcase, Award, BookOpen, Trophy } from "lucide-react";
 
 const iconMap = {
@@ -13,13 +14,19 @@ const iconMap = {
 } as const;
 
 export function Experience() {
-  const { timeline } = portfolioData;
+  const { t } = useTranslation();
+  const { timeline } = usePortfolioData();
   return (
     <Section
       id="experience"
-      eyebrow="Journey"
-      title={<>Experience & <span className="text-gradient">Career Journey</span></>}
-      subtitle="A timeline of learning, building, and the moments that shaped my path."
+      eyebrow={t("sections.experience.eyebrow")}
+      title={
+        <>
+          {t("sections.experience.titlePrefix")}{" "}
+          <span className="text-gradient">{t("sections.experience.titleHighlight")}</span>
+        </>
+      }
+      subtitle={t("sections.experience.subtitle")}
     >
       <div className="relative">
         <div className="absolute left-4 sm:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-border to-transparent sm:-translate-x-1/2" />
@@ -44,8 +51,8 @@ export function Experience() {
                     <h3 className="mt-1 font-display text-lg font-semibold">{t.title}</h3>
                     <div className="text-sm text-muted-foreground">{t.org}</div>
                     <p className="mt-2 text-sm text-muted-foreground text-justify leading-relaxed">
-  {t.detail}
-</p>
+                      {t.detail}
+                    </p>
                   </div>
                 </div>
                 <div className="hidden sm:block" />

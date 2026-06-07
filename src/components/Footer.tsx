@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Github, Linkedin, Instagram, Twitter, Youtube } from "lucide-react";
-import { portfolioData } from "@/data/portfolioData";
+import { useTranslation } from "react-i18next";
+import { usePortfolioData } from "@/hooks/use-portfolio-data";
 
 const items = [
   { key: "github", Icon: Github, label: "GitHub" },
@@ -11,12 +12,13 @@ const items = [
 ] as const;
 
 export function Footer() {
-  const { social, personal } = portfolioData;
+  const { t } = useTranslation();
+  const { social } = usePortfolioData();
   return (
     <footer className="relative border-t border-border/60 py-12">
       <div className="mx-auto max-w-6xl px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
         <div className="text-sm text-muted-foreground">
-          © {new Date().getFullYear()} — Crafted with motion, particles & caffeine.
+          {t("footer.crafted", { year: new Date().getFullYear() })}
         </div>
         <div className="flex items-center gap-2">
           {items

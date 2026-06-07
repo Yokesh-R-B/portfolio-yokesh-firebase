@@ -1,16 +1,24 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Section, fadeUp, stagger } from "@/components/Section";
-import { portfolioData } from "@/data/portfolioData";
+import { usePortfolioData } from "@/hooks/use-portfolio-data";
 
 export function CodingProfiles() {
-  const { codingProfiles } = portfolioData;
+  const { t } = useTranslation();
+  const { codingProfiles } = usePortfolioData();
   return (
     <Section
       id="profiles"
-      eyebrow="Coding profiles"
-      title={<>Where I <span className="text-gradient">grind</span>.</>}
-      subtitle="Solving problems, contributing, and leveling up across communities."
+      eyebrow={t("sections.profiles.eyebrow")}
+      title={
+        <>
+          {t("sections.profiles.titlePrefix")}{" "}
+          <span className="text-gradient">{t("sections.profiles.titleHighlight")}</span>
+          {t("sections.profiles.titleSuffix")}
+        </>
+      }
+      subtitle={t("sections.profiles.subtitle")}
     >
       <motion.div
         variants={stagger}
@@ -41,7 +49,9 @@ export function CodingProfiles() {
             </div>
             <div className="relative mt-5 flex items-center justify-between text-sm">
               <span className="text-muted-foreground">{p.stat}</span>
-              <span className="rounded-full bg-secondary px-2.5 py-0.5 text-[11px] font-medium">Active</span>
+              <span className="rounded-full bg-secondary px-2.5 py-0.5 text-[11px] font-medium">
+                {t("sections.profiles.active")}
+              </span>
             </div>
           </motion.a>
         ))}

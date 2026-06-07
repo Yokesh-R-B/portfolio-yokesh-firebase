@@ -1,19 +1,36 @@
+import { lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
+import { useTranslation } from "react-i18next";
 import { Navbar } from "@/components/Navbar";
 import { AmbientBackground } from "@/components/AmbientBackground";
 import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
-import { Skills } from "@/components/sections/Skills";
-import { Projects } from "@/components/sections/Projects";
-import { Experience } from "@/components/sections/Experience";
-import { CodingProfiles } from "@/components/sections/CodingProfiles";
-import { Resume } from "@/components/sections/Resume";
-import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/Footer";
-import { portfolioData } from "@/data/portfolioData";
+import { usePortfolioData } from "@/hooks/use-portfolio-data";
+
+const Skills = lazy(() =>
+  import("@/components/sections/Skills").then((m) => ({ default: m.Skills })),
+);
+const Projects = lazy(() =>
+  import("@/components/sections/Projects").then((m) => ({ default: m.Projects })),
+);
+const Experience = lazy(() =>
+  import("@/components/sections/Experience").then((m) => ({ default: m.Experience })),
+);
+const CodingProfiles = lazy(() =>
+  import("@/components/sections/CodingProfiles").then((m) => ({ default: m.CodingProfiles })),
+);
+const Resume = lazy(() =>
+  import("@/components/sections/Resume").then((m) => ({ default: m.Resume })),
+);
+const Contact = lazy(() =>
+  import("@/components/sections/Contact").then((m) => ({ default: m.Contact })),
+);
 
 export default function Home() {
-  const { personal } = portfolioData;
+  const { i18n } = useTranslation();
+  const data = usePortfolioData();
+  const { personal } = data;
   const title = `${personal.name} — ${personal.title}`;
   const desc = personal.tagline;
 
@@ -37,7 +54,8 @@ export default function Home() {
             jobTitle: personal.title,
             email: personal.email,
             url: typeof window !== "undefined" ? window.location.origin : "",
-            sameAs: Object.values(portfolioData.social),
+            sameAs: Object.values(data.social),
+            inLanguage: i18n.resolvedLanguage ?? i18n.language,
           })}
         </script>
       </Helmet>
@@ -47,12 +65,14 @@ export default function Home() {
       <main>
         <Hero />
         <About />
-        <Skills />
-        <Projects />
-        <Experience />
-        <CodingProfiles />
-        <Resume />
-        <Contact />
+        <Suspense fallback={<div className="h-32" />}>
+          <Skills />
+          <Projects />
+          <Experience />
+          <CodingProfiles />
+          <Resume />
+          <Contact />
+        </Suspense>
       </main>
       <Footer />
     </div>

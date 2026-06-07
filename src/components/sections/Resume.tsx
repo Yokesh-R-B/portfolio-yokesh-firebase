@@ -1,12 +1,23 @@
 import { motion } from "framer-motion";
 import { Download, FileText, Eye } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Section } from "@/components/Section";
-import { portfolioData } from "@/data/portfolioData";
+import { usePortfolioData } from "@/hooks/use-portfolio-data";
 
 export function Resume() {
-  const { personal } = portfolioData;
+  const { t } = useTranslation();
+  const { personal } = usePortfolioData();
   return (
-    <Section id="resume" eyebrow="Resume" title={<>One page. <span className="text-gradient">All the highlights.</span></>}>
+    <Section
+      id="resume"
+      eyebrow={t("sections.resume.eyebrow")}
+      title={
+        <>
+          {t("sections.resume.titlePrefix")}{" "}
+          <span className="text-gradient">{t("sections.resume.titleHighlight")}</span>
+        </>
+      }
+    >
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -21,10 +32,10 @@ export function Resume() {
             <FileText className="h-8 w-8" />
           </div>
           <div className="flex-1">
-            <h3 className="font-display text-2xl font-semibold">{personal.name} — Resume</h3>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Updated recently · PDF · One page
-            </p>
+            <h3 className="font-display text-2xl font-semibold">
+              {t("sections.resume.heading", { name: personal.name })}
+            </h3>
+            <p className="mt-1 text-sm text-muted-foreground">{t("sections.resume.meta")}</p>
           </div>
           <div className="flex gap-2">
             <a
@@ -33,14 +44,14 @@ export function Resume() {
               rel="noreferrer"
               className="inline-flex items-center gap-2 rounded-xl border border-border bg-background/60 px-4 py-2 text-sm font-medium hover:bg-accent"
             >
-              <Eye className="h-4 w-4" /> Preview
+              <Eye className="h-4 w-4" /> {t("sections.resume.preview")}
             </a>
             <a
               href={personal.resumeUrl}
               download
               className="inline-flex items-center gap-2 rounded-xl bg-gradient-brand px-4 py-2 text-sm font-medium text-white glow-brand"
             >
-              <Download className="h-4 w-4" /> Download
+              <Download className="h-4 w-4" /> {t("sections.resume.download")}
             </a>
           </div>
         </div>

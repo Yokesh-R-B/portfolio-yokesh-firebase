@@ -88,8 +88,6 @@
   --brand-2: oklch(0.78 0.18 200);
   --brand-3: oklch(0.82 0.18 340);
 }
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
-
 @layer base {
   * {
     border-color: var(--color-border);
@@ -103,9 +101,14 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
-    transition: background-color 0.5s ease, color 0.5s ease;
+    transition:
+      background-color 0.5s ease,
+      color 0.5s ease;
   }
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     font-family: var(--font-display);
     letter-spacing: -0.02em;
   }
@@ -132,36 +135,67 @@
     box-shadow: 0 0 0 1px color-mix(in oklab, var(--brand) 30%, transparent);
   }
   .grain {
-    background-image: radial-gradient(circle at 1px 1px, color-mix(in oklab, var(--foreground) 6%, transparent) 1px, transparent 0);
+    background-image: radial-gradient(
+      circle at 1px 1px,
+      color-mix(in oklab, var(--foreground) 6%, transparent) 1px,
+      transparent 0
+    );
     background-size: 22px 22px;
   }
 }
 
 @keyframes blob {
-  0%, 100% { transform: translate(0,0) scale(1); }
-  33% { transform: translate(30px,-40px) scale(1.1); }
-  66% { transform: translate(-25px,25px) scale(0.95); }
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -40px) scale(1.1);
+  }
+  66% {
+    transform: translate(-25px, 25px) scale(0.95);
+  }
 }
-.animate-blob { animation: blob 18s ease-in-out infinite; }
+.animate-blob {
+  animation: blob 18s ease-in-out infinite;
+}
 
 @keyframes float-y {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
 }
-.animate-float { animation: float-y 5s ease-in-out infinite; }
+.animate-float {
+  animation: float-y 5s ease-in-out infinite;
+}
 
 @keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }
 .animate-shimmer {
-  background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--brand) 30%, transparent), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in oklab, var(--brand) 30%, transparent),
+    transparent
+  );
   background-size: 200% 100%;
   animation: shimmer 2.5s linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
