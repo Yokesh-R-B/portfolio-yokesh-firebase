@@ -4,7 +4,12 @@ import { Section, fadeUp, stagger } from "@/components/Section";
 import { usePortfolioData } from "@/hooks/use-portfolio-data";
 import { Code2, Layers, Rocket, Sparkles } from "lucide-react";
 
-const icons = [Code2, Layers, Rocket, Sparkles];
+const highlightsMeta = [
+  { id: "projects", icon: Code2 },
+  { id: "stacks", icon: Layers },
+  { id: "experience", icon: Rocket },
+  { id: "curiosity", icon: Sparkles },
+];
 
 export function About() {
   const { t } = useTranslation();
@@ -35,10 +40,11 @@ export function About() {
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
       >
         {highlights.map((h, index) => {
-          const Icon = icons[index] ?? Sparkles;
+          const meta = highlightsMeta[index] ?? { id: `highlight-${index}`, icon: Sparkles };
+          const Icon = meta.icon;
           return (
             <motion.div
-              key={h.title}
+              key={meta.id}
               variants={fadeUp}
               whileHover={{ y: -4 }}
               className="group relative rounded-2xl border border-border bg-card/60 p-6 backdrop-blur"
