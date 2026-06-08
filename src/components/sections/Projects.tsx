@@ -77,7 +77,7 @@ export function Projects() {
         variants={stagger}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true, margin: "-60px" }}
+        viewport={{ once: true, margin: "-20px" }}
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
       >
         <AnimatePresence mode="popLayout">

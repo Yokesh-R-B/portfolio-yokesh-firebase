@@ -34,11 +34,15 @@ function useTypewriter(words: string[], speed = 70, pause = 1400) {
 }
 
 export function Hero() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { personal } = usePortfolioData();
   const role = useTypewriter(personal.roles);
   const reduce = useReducedMotion();
   const [showParticles, setShowParticles] = useState(false);
+  const resumeFileName =
+    (i18n.resolvedLanguage ?? i18n.language ?? "en").startsWith("de")
+      ? "Yokesh_Lebenslauf.pdf"
+      : "Yokesh_Resume.pdf";
 
   useEffect(() => {
     const isDesktop = window.matchMedia("(min-width: 768px)").matches;
@@ -136,7 +140,7 @@ export function Hero() {
             </a>
             <a
               href={personal.resumeUrl}
-              download
+              download={resumeFileName}
               className="inline-flex items-center gap-2 rounded-xl border border-border bg-card/60 px-5 py-3 text-sm font-medium backdrop-blur hover:bg-accent transition-colors"
             >
               <Download className="h-4 w-4" />

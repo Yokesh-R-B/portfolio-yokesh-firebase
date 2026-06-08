@@ -5,8 +5,12 @@ import { Section } from "@/components/Section";
 import { usePortfolioData } from "@/hooks/use-portfolio-data";
 
 export function Resume() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { personal } = usePortfolioData();
+  const resumeFileName =
+    (i18n.resolvedLanguage ?? i18n.language ?? "en").startsWith("de")
+      ? "Yokesh_Lebenslauf.pdf"
+      : "Yokesh_Resume.pdf";
   return (
     <Section
       id="resume"
@@ -19,10 +23,10 @@ export function Resume() {
       }
     >
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 18 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-60px" }}
-        transition={{ duration: 0.6 }}
+        viewport={{ once: true, margin: "-20px" }}
+        transition={{ duration: 0.32 }}
         whileHover={{ y: -4 }}
         className="relative mx-auto max-w-3xl overflow-hidden rounded-3xl border border-border bg-card/60 p-8 backdrop-blur"
       >
@@ -48,7 +52,7 @@ export function Resume() {
             </a>
             <a
               href={personal.resumeUrl}
-              download
+              download={resumeFileName}
               className="inline-flex items-center gap-2 rounded-xl bg-gradient-brand px-4 py-2 text-sm font-medium text-white glow-brand"
             >
               <Download className="h-4 w-4" /> {t("sections.resume.download")}

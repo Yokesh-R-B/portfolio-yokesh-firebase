@@ -19,7 +19,7 @@ export function Skills() {
             key={group}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, margin: "-60px" }}
+            viewport={{ once: true, margin: "-20px" }}
             variants={stagger}
           >
             <motion.h3

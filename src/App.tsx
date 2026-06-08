@@ -11,9 +11,10 @@ export default function App() {
   const { i18n } = useTranslation();
 
   useEffect(() => {
-    document.documentElement.lang = (i18n.resolvedLanguage ?? i18n.language).startsWith("de")
-      ? "de"
-      : "en";
+ const currentLang = i18n.resolvedLanguage ?? i18n.language ?? "en";
+
+document.documentElement.lang =
+  currentLang.startsWith("de") ? "de" : "en";
   }, [i18n.language, i18n.resolvedLanguage]);
 
   return (

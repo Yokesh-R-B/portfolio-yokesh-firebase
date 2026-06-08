@@ -1,5 +1,15 @@
 {
   "projects": {
-    "default": "yokesh-portfolio-4ddf2"
+    "default": "yokeshrb-5e9a4",
+    "yrb": "yokeshrb-5e9a4"
+  },
+  "targets": {
+    "yokeshrb-5e9a4": {
+      "hosting": {
+        "yrb": [
+          "yrb"
+        ]
+      }
+    }
   }
 }

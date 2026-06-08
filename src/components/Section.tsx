@@ -21,10 +21,10 @@ export function Section({
       <div className="mx-auto max-w-6xl px-6">
         {(eyebrow || title || subtitle) && (
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-20px" }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
             className="mb-14 max-w-2xl"
           >
             {eyebrow && (
@@ -45,9 +45,9 @@ export function Section({
 
 export const stagger: Variants = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.08, delayChildren: 0.05 } },
+  show: { transition: { staggerChildren: 0.04, delayChildren: 0.01 } },
 };
 export const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: "easeOut" } },
+  hidden: { opacity: 0, y: 16 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.32, ease: "easeOut" } },
 };

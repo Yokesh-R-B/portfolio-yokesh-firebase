@@ -26,7 +26,7 @@ export const portfolioDataByLocale = {
     personal: {
       name: "Yokesh",
       firstName: "Yokesh",
-      title: "Backend Developer | Java · Python",
+      title: "Developer | Java · Python",
       tagline:
         "Software developer crafting reliable backends and clean APIs with Java, Spring Boot & Python.",
       bio: "Backend-leaning full-stack engineer focused on Java/Spring Boot ecosystems and Python tooling. Master's in Digital Engineering with practical work in automotive, finance, and research.",

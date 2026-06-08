@@ -24,7 +24,7 @@ export function CodingProfiles() {
         variants={stagger}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true, margin: "-60px" }}
+        viewport={{ once: true, margin: "-20px" }}
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
       >
         {codingProfiles.map((p) => (

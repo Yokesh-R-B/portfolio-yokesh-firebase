@@ -59,10 +59,10 @@ export function Contact() {
     >
       <motion.form
         onSubmit={handleSubmit(onSubmit)}
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 18 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-60px" }}
-        transition={{ duration: 0.6 }}
+        viewport={{ once: true, margin: "-20px" }}
+        transition={{ duration: 0.32 }}
         className="mx-auto max-w-2xl space-y-5 rounded-3xl border border-border bg-card/60 p-6 sm:p-8 backdrop-blur"
       >
         <Field label={t("sections.contact.name")} error={errors.name?.message}>

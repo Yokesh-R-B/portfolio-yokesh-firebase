@@ -14,10 +14,13 @@ const highlightsMeta = [
 export function About() {
   const { t } = useTranslation();
   const { personal } = usePortfolioData();
-  const highlights = t("sections.about.highlights", { returnObjects: true }) as {
-    title: string;
-    text: string;
-  }[];
+const highlights = t("sections.about.highlights", {
+  returnObjects: true,
+});
+
+const safeHighlights = Array.isArray(highlights)
+  ? highlights
+  : [];
 
   return (
     <Section
@@ -36,12 +39,14 @@ export function About() {
         variants={stagger}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true, margin: "-80px" }}
+        viewport={{ once: true, margin: "-20px" }}
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
       >
-        {highlights.map((h, index) => {
+        {safeHighlights.map((h, index) => {
           const meta = highlightsMeta[index] ?? { id: `highlight-${index}`, icon: Sparkles };
           const Icon = meta.icon;
+          console.log("highlights", highlights);
+console.log("isArray", Array.isArray(highlights));
           return (
             <motion.div
               key={meta.id}

@@ -18,11 +18,14 @@ const sections = [
 export function Navbar() {
   const { theme, toggle } = useTheme();
   const { t, i18n } = useTranslation();
-  const isGerman = (i18n.resolvedLanguage ?? i18n.language).startsWith("de");
+  const isGerman =
+  (i18n.resolvedLanguage ?? i18n.language ?? "en").startsWith("de");
   const nextLanguage = isGerman ? "en" : "de";
 
   const changeLanguage = () => {
-    void i18n.changeLanguage(nextLanguage);
+    if (typeof i18n.changeLanguage === "function") {
+      void i18n.changeLanguage(nextLanguage);
+    }
     document.documentElement.lang = nextLanguage;
   };
 

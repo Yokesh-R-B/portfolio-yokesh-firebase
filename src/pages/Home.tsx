@@ -31,7 +31,7 @@ export default function Home() {
   const { i18n } = useTranslation();
   const data = usePortfolioData();
   const { personal } = data;
-  const title = `${personal.name} — ${personal.title}`;
+  const title = `${personal.name} - ${personal.title}`;
   const desc = personal.tagline;
 
   return (

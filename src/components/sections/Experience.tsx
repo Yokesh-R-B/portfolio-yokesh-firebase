@@ -37,10 +37,10 @@ export function Experience() {
             return (
               <motion.div
                 key={t.title + i}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.5, delay: i * 0.05 }}
+                viewport={{ once: true, margin: "-20px" }}
+                transition={{ duration: 0.32, delay: i * 0.02 }}
                 className={`relative grid grid-cols-1 sm:grid-cols-2 gap-6 ${left ? "" : "sm:[&>*:first-child]:order-2"}`}
               >
                 <div className={`pl-12 sm:pl-0 ${left ? "sm:pr-10 sm:text-right" : "sm:pl-10"}`}>

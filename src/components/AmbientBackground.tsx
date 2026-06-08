@@ -1,7 +1,19 @@
 import { motion, useReducedMotion } from "framer-motion";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export function AmbientBackground() {
   const reduce = useReducedMotion();
+  const isMobile = useIsMobile();
+
+  if (isMobile) {
+    return (
+      <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+        <div className="absolute inset-0 grain opacity-[0.04]" />
+        <div className="absolute inset-0 bg-[radial-gradient(80%_60%_at_10%_0%,color-mix(in_oklab,var(--brand)_16%,transparent),transparent_70%),radial-gradient(70%_50%_at_90%_30%,color-mix(in_oklab,var(--brand-2)_14%,transparent),transparent_75%),radial-gradient(80%_60%_at_40%_100%,color-mix(in_oklab,var(--brand-3)_12%,transparent),transparent_75%)]" />
+      </div>
+    );
+  }
+
   return (
     <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
       <div className="absolute inset-0 grain opacity-[0.07]" />
