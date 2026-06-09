@@ -13,9 +13,9 @@ const shared = {
     youtube: "",
   },
   emailjs: {
-    serviceId: "service_1bldb18",
-    templateId: "template_tx5icj4",
-    publicKey: "1MVKLQX_ZiswwmgGg",
+    serviceId: "***",
+    templateId: "***",
+    publicKey: "***",
   },
 };
 
