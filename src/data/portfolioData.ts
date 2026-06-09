@@ -3,8 +3,6 @@
 import ragChatbotImage from "@/assets/project-rag-chatbot.png";
 import portfolioImage from "@/assets/project-portfolio.jpg";
 import crackDetectionImage from "@/assets/project-crack.jpeg";
-import yokeshResume from "@/assets/Yokesh_Resume.pdf";
-import yokeshLebenslauf from "@/assets/Yokesh_Lebenslauf.pdf";
 
 const shared = {
   social: {
@@ -15,9 +13,9 @@ const shared = {
     youtube: "",
   },
   emailjs: {
-    serviceId: "***",
-    templateId: "***",
-    publicKey: "***",
+    serviceId: "service_1bldb18",
+    templateId: "template_tx5icj4",
+    publicKey: "1MVKLQX_ZiswwmgGg",
   },
 };
 
@@ -32,7 +30,7 @@ export const portfolioDataByLocale = {
       bio: "Backend-leaning full-stack engineer focused on Java/Spring Boot ecosystems and Python tooling. Master's in Digital Engineering with practical work in automotive, finance, and research.",
       location: "onlinedev / java · python",
       email: "yokeshrb@gmail.com",
-      resumeUrl: yokeshResume,
+      resumeUrl: "/Yokesh_Resume.pdf",
       avatarUrl: "",
       roles: [
         "Backend Developer",
@@ -243,7 +241,7 @@ export const portfolioDataByLocale = {
       bio: "Backendorientierter Full-Stack-Engineer mit Fokus auf Java/Spring Boot und Python-Tooling. Master in Digital Engineering mit praktischer Erfahrung in Automotive, Finance und Forschung.",
       location: "onlinedev / java · python",
       email: "yokeshrb@gmail.com",
-      resumeUrl: yokeshLebenslauf,
+      resumeUrl: "/Yokesh_Lebenslauf.pdf",
       avatarUrl: "",
       roles: [
         "Backend-Entwickler",
