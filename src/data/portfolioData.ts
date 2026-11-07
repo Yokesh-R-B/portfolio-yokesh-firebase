@@ -30,7 +30,7 @@ export const portfolioDataByLocale = {
       bio: "Software developer experienced in Python backend applications, enterprise data migration, API integrations, distributed workflows, and AI automation. Currently building Virtual Factory solutions at BMW Group alongside a Master's in Digital Engineering.",
       location: "Munich, Germany",
       email: "yokeshrb@gmail.com",
-      resumeUrl: "/Yokesh_Resume.pdf",
+      resumeUrl: "/Yokesh_Resume.pdf?v=20261107",
       avatarUrl: "",
       roles: [
         "AI Developer",
@@ -265,7 +265,7 @@ export const portfolioDataByLocale = {
       bio: "Softwareentwickler mit Erfahrung in Python-Backends, Enterprise-Datenmigration, API-Integrationen, verteilten Workflows und KI-Automatisierung. Aktuell entwickle ich Virtual-Factory-Lösungen bei der BMW Group und schließe meinen Master in Digital Engineering ab.",
       location: "München, Deutschland",
       email: "yokeshrb@gmail.com",
-      resumeUrl: "/Yokesh_Lebenslauf.pdf",
+      resumeUrl: "/Yokesh_Lebenslauf.pdf?v=20261107",
       avatarUrl: "",
       roles: [
         "KI-Entwickler",
