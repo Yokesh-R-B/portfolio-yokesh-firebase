@@ -155,14 +155,30 @@ export const portfolioDataByLocale = {
     projects: [
       {
         id: "p1",
-        title: "RAG Chatbot Backend",
+        title: "Production RAG Chatbot",
         description:
-          "End-to-end Retrieval-Augmented Generation backend with FastAPI endpoints, ChromaDB vector search, SQLite persistence, and multi-turn LLM chat.",
-        tech: ["Python", "FastAPI", "LangChain", "ChromaDB", "SQLite", "LLM"],
-        features: ["FastAPI endpoints", "Vector search", "SQLite persistence", "Multi-turn chat"],
+          "Live document Q&A application for PDF, DOCX, and HTML files, combining a FastAPI backend, Streamlit frontend, ChromaDB retrieval, SQLite persistence, and Groq-powered multi-turn chat.",
+        tech: [
+          "Python",
+          "FastAPI",
+          "Streamlit",
+          "ChromaDB",
+          "SQLite",
+          "Groq",
+          "Docker",
+          "Railway",
+        ],
+        features: [
+          "PDF, DOCX, and HTML uploads",
+          "Follow-up conversations and chat history",
+          "Document listing and deletion",
+          "Stale vector cleanup",
+          "Health monitoring",
+          "Streamlit Cloud and Railway deployment",
+        ],
         image: ragChatbotImage,
         github: "https://github.com/Yokesh-R-B/rag-chatbot-application",
-        demo: "",
+        demo: "https://ragchatbot-yokesh.streamlit.app",
       },
       {
         id: "p2",
@@ -388,14 +404,30 @@ export const portfolioDataByLocale = {
     projects: [
       {
         id: "p1",
-        title: "RAG-Chatbot-Backend",
+        title: "Produktiver RAG-Chatbot",
         description:
-          "End-to-End-RAG-Backend mit FastAPI-Endpunkten, ChromaDB-Vektorsuche, SQLite-Persistenz und mehrturnigem LLM-Chat.",
-        tech: ["Python", "FastAPI", "LangChain", "ChromaDB", "SQLite", "LLM"],
-        features: ["FastAPI-Endpunkte", "Vektorsuche", "SQLite-Persistenz", "Mehrturniger Chat"],
+          "Live-Dokumenten-Chat für PDF-, DOCX- und HTML-Dateien mit FastAPI-Backend, Streamlit-Frontend, ChromaDB-Retrieval, SQLite-Persistenz und Groq-basiertem Mehrturn-Chat.",
+        tech: [
+          "Python",
+          "FastAPI",
+          "Streamlit",
+          "ChromaDB",
+          "SQLite",
+          "Groq",
+          "Docker",
+          "Railway",
+        ],
+        features: [
+          "PDF-, DOCX- und HTML-Uploads",
+          "Folgefragen und Chatverlauf",
+          "Dokumentenverwaltung und -löschung",
+          "Bereinigung veralteter Vektoren",
+          "Health-Monitoring",
+          "Deployment auf Streamlit Cloud und Railway",
+        ],
         image: ragChatbotImage,
         github: "https://github.com/Yokesh-R-B/rag-chatbot-application",
-        demo: "",
+        demo: "https://ragchatbot-yokesh.streamlit.app",
       },
       {
         id: "p2",

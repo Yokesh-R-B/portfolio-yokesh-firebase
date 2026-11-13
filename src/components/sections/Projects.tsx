@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { Github, X } from "lucide-react";
+import { ExternalLink, Github, X } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Section, fadeUp, stagger } from "@/components/Section";
 import type { Project } from "@/data/portfolioData";
@@ -142,14 +142,16 @@ export function Projects() {
                 </div>
 
                 <div className="mt-7 flex flex-wrap gap-3">
-                  {/* <a
-                    href={active.demo}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-2 rounded-xl bg-gradient-brand px-4 py-2 text-sm font-medium text-white glow-brand"
-                  >
-                    <ExternalLink className="h-4 w-4" /> Live demo
-                  </a> */}
+                  {active.demo && (
+                    <a
+                      href={active.demo}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 rounded-xl bg-gradient-brand px-4 py-2 text-sm font-medium text-white glow-brand"
+                    >
+                      <ExternalLink className="h-4 w-4" /> {t("sections.projects.liveDemo")}
+                    </a>
+                  )}
                   <a
                     href={active.github}
                     target="_blank"
